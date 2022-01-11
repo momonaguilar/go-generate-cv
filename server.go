@@ -12,6 +12,7 @@ func main() {
 	fileServer := http.FileServer(http.Dir("./static"))
 	http.Handle("/", fileServer)
 	http.HandleFunc("/hello", helloHandler)
+	http.HandleFunc("/form", formHandler)
 
 	fmt.Printf("Starting server at port 8080\n")
 
@@ -32,5 +33,21 @@ func helloHandler(rw http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	fmt.Fprintf(rw, "INFO: Hello handler activated")
+	fmt.Fprintf(rw, "INFO: Hello handler activated\n")
+}
+
+func formHandler(rw http.ResponseWriter, r *http.Request) {
+	if err := r.ParseForm(); err != nil {
+		fmt.Fprintf(rw, "ERROR: ParseForm() error: %v", err)
+		return
+	}
+
+	fmt.Fprintf(rw, "INFO: POST request successful\n")
+
+	name := r.FormValue("name")
+	address := r.FormValue("address")
+
+	fmt.Fprintf(rw, "Name: %s\n", name)
+	fmt.Fprintf(rw, "Address: %s\n", address)
+
 }
