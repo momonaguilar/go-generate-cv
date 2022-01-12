@@ -1,22 +1,38 @@
 package main
 
 import (
+	"bytes"
 	"fmt"
+	"html/template"
 	"log"
 	"net/http"
-	// "log"
-	// "net/http"
+	"os"
 )
 
+var tpl = template.Must(template.ParseFiles("./static/index.html"))
+
+type Profile struct {
+	Name       string `json:"name"`
+	Position   string `json:"position"`
+	URLToImage string `json:"urlToImage"`
+}
+
 func main() {
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+	}
+
+	mux := http.NewServeMux()
+
 	fileServer := http.FileServer(http.Dir("./static"))
-	http.Handle("/", fileServer)
-	http.HandleFunc("/hello", helloHandler)
-	http.HandleFunc("/form", formHandler)
+	mux.Handle("/", fileServer)
+	mux.HandleFunc("/hello", helloHandler)
+	mux.HandleFunc("/form", formHandler)
 
 	fmt.Printf("Starting server at port 8080\n")
 
-	if err := http.ListenAndServe(":8080", nil); err != nil {
+	if err := http.ListenAndServe(":"+port, mux); err != nil {
 		log.Fatal(err)
 	}
 }
@@ -42,8 +58,22 @@ func formHandler(rw http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	fmt.Fprintf(rw, "INFO: POST request successful\n")
+	profile := &Profile{
+		Name:       r.FormValue("name"),
+		Position:   "",
+		URLToImage: "",
+	}
 
+	buf := &bytes.Buffer{}
+	err := tpl.Execute(buf, profile)
+	if err != nil {
+		http.Error(rw, err.Error(), http.StatusInternalServerError)
+		return
+	}
+	buf.WriteTo(rw)
+
+	fmt.Fprintf(rw, "INFO: POST request successful\n")
+	fmt.Println("%v", r.Body)
 	name := r.FormValue("name")
 	address := r.FormValue("address")
 
