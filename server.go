@@ -12,9 +12,13 @@ import (
 var tpl = template.Must(template.ParseFiles("./static/index.html"))
 
 type Profile struct {
-	Name       string `json:"name"`
-	Position   string `json:"position"`
-	URLToImage string `json:"urlToImage"`
+	Name            string `json:"name"`
+	Position        string `json:"position"`
+	Address         string `json:"address"`
+	Phone           string `json:"phone"`
+	EmailAddress    string `json:"emailAddress"`
+	PersonalWebsite string `json:"personalWebsite"`
+	URLToImage      string `json:"urlToImage"`
 }
 
 func main() {
@@ -59,9 +63,13 @@ func formHandler(rw http.ResponseWriter, r *http.Request) {
 	}
 
 	profile := &Profile{
-		Name:       r.FormValue("name"),
-		Position:   "",
-		URLToImage: "",
+		Name:            r.FormValue("name"),
+		Position:        r.FormValue("position"),
+		Address:         r.FormValue("address"),
+		Phone:           r.FormValue("phone"),
+		EmailAddress:    r.FormValue("emailAddress"),
+		PersonalWebsite: r.FormValue("personalWebsite"),
+		URLToImage:      "",
 	}
 
 	buf := &bytes.Buffer{}
