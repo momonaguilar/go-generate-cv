@@ -92,12 +92,11 @@ body {
   border-radius: 50%;
   margin-right: 15px;
   font-size: 16px;
-  position: relative;
 }
 
 .resume .icon i,
 .resume .resume_right .resume_hobby ul li i {
-  position: absolute;
+    position: relative;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
