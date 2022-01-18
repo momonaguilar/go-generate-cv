@@ -52,7 +52,28 @@ func formHandler(rw http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	profile := &Profile{
+	Skills := []Skills{
+		{
+			Skill:  "HTML",
+			Rating: 100,
+		},
+	}
+	Socials := []Socials{
+		{
+			Social: r.FormValue("social"),
+			Link:   r.FormValue("link"),
+		},
+	}
+	Experiences := []Experiences{
+		{
+			Year:        r.FormValue("year"),
+			Company:     r.FormValue("company"),
+			Role:        r.FormValue("role"),
+			Description: r.FormValue("description"),
+		},
+	}
+
+	profile := Profile{
 		Name:            r.FormValue("name"),
 		Position:        r.FormValue("position"),
 		Address:         r.FormValue("address"),
@@ -60,6 +81,10 @@ func formHandler(rw http.ResponseWriter, r *http.Request) {
 		EmailAddress:    r.FormValue("emailAddress"),
 		PersonalWebsite: r.FormValue("personalWebsite"),
 		URLToImage:      "",
+
+		Skills:      Skills,
+		Socials:     Socials,
+		Experiences: Experiences,
 	}
 
 	buf := &bytes.Buffer{}

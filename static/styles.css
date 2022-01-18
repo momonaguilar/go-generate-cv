@@ -96,7 +96,7 @@ body {
 
 .resume .icon i,
 .resume .resume_right .resume_hobby ul li i {
-    position: relative;
+  position: relative;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
