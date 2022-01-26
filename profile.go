@@ -33,29 +33,18 @@ type Hobbies struct {
 }
 
 type Profile struct {
-	Name            string `json:"name"`
-	Position        string `json:"position"`
-	Address         string `json:"address"`
-	Phone           string `json:"phone"`
-	EmailAddress    string `json:"emailAddress"`
-	PersonalWebsite string `json:"personalWebsite"`
-	URLToImage      string `json:"urlToImage"`
-	About           string `json:"about"`
-
-	//skills
-	Skills []Skills `json:"skills"`
-
-	//socials
-	Socials []Socials `json:"socials"`
-
-	//experience
-	Experiences []Experiences `json:"experiences"`
-
-	//education
-	Education []Education `json:"education"`
-
-	//hobby
-	Hobby []Hobbies `json:"hobbies"`
-
-	PublishedAt time.Time `json:"publishedAt"`
+	Name            string        `json:"name"`
+	Position        string        `json:"position"`
+	Address         string        `json:"address"`
+	Phone           string        `json:"phone"`
+	EmailAddress    string        `json:"emailAddress"`
+	PersonalWebsite string        `json:"personalWebsite"`
+	URLToImage      string        `json:"urlToImage"`
+	About           string        `json:"about"`
+	Skills          []Skills      `json:"skills"`
+	Socials         []Socials     `json:"socials"`
+	Experiences     []Experiences `json:"experiences"`
+	Education       []Education   `json:"education"`
+	Hobby           []Hobbies     `json:"hobbies"`
+	PublishedAt     time.Time     `json:"publishedAt"`
 }
