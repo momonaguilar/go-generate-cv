@@ -7,6 +7,8 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"strconv"
+	"time"
 )
 
 var tpl = template.Must(template.ParseFiles("./static/index.html"))
@@ -64,9 +66,23 @@ func formHandler(rw http.ResponseWriter, r *http.Request) {
 			Link:   r.FormValue("link"),
 		},
 	}
+
+	yearFrom, err := strconv.Atoi(r.FormValue("yearFrom"))
+	if err != nil {
+		fmt.Fprintf(rw, "WARN: Unable to parse start year, defaulting to current year, error: %v", err)
+		yearFrom = int(time.Now().Year())
+	}
+
+	yearTo, err := strconv.Atoi(r.FormValue("yearTo"))
+	if err != nil {
+		fmt.Fprintf(rw, "WARN: Unable to parse end year, defaulting to current year, error: %v", err)
+		yearTo = int(time.Now().Year())
+	}
+
 	Experiences := []Experiences{
 		{
-			Year:        r.FormValue("year"),
+			YearFrom:    yearFrom,
+			YearTo:      yearTo,
 			Company:     r.FormValue("company"),
 			Role:        r.FormValue("role"),
 			Description: r.FormValue("description"),
@@ -88,7 +104,7 @@ func formHandler(rw http.ResponseWriter, r *http.Request) {
 	}
 
 	buf := &bytes.Buffer{}
-	err := tpl.Execute(buf, profile)
+	err = tpl.Execute(buf, profile)
 	if err != nil {
 		http.Error(rw, err.Error(), http.StatusInternalServerError)
 		return

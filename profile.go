@@ -13,7 +13,8 @@ type Socials struct {
 }
 
 type Experiences struct {
-	Year        string `json:"year"`
+	YearFrom    int    `json:"yearFrom"`
+	YearTo      int    `json:"yearTo"`
 	Company     string `json:"company"`
 	Role        string `json:"role"`
 	Description string `json:"description"`
