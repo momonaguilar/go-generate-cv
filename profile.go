@@ -46,6 +46,6 @@ type Profile struct {
 	Socials         []Socials     `json:"socials"`
 	Experiences     []Experiences `json:"experiences"`
 	Education       []Education   `json:"education"`
-	Hobby           []Hobbies     `json:"hobbies"`
+	Hobbies         []Hobbies     `json:"hobbies"`
 	PublishedAt     time.Time     `json:"publishedAt"`
 }

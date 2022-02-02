@@ -31,6 +31,10 @@ func TestTormHandler(t *testing.T) {
 			{YearFrom: 2000, YearTo: 2010, Company: "NCR Corporation", Role: "CEO", Description: "Performed leadership and management"},
 			{YearFrom: 2010, YearTo: 2020, Company: "IBM Corporation", Role: "CEO", Description: "Performed leadership and management"},
 		},
+		Hobbies: []Hobbies{
+			{Name: "Swimming", Details: "Competitive swimming", Awards: "Olympic Medalist"},
+			{Name: "Badminton", Details: "Leisure sports", Awards: "Company wide champion"},
+		},
 		PublishedAt: time.Now(),
 	}
 
