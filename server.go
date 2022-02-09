@@ -69,13 +69,13 @@ func formHandler(rw http.ResponseWriter, r *http.Request) {
 
 	yearFrom, err := strconv.Atoi(r.FormValue("yearFrom"))
 	if err != nil {
-		fmt.Fprintf(rw, "WARN: Unable to parse start year, defaulting to current year, error: %v", err)
+		//fmt.Fprintf(rw, "WARN: Unable to parse start year, defaulting to current year, error: %v", err)
 		yearFrom = int(time.Now().Year())
 	}
 
 	yearTo, err := strconv.Atoi(r.FormValue("yearTo"))
 	if err != nil {
-		fmt.Fprintf(rw, "WARN: Unable to parse end year, defaulting to current year, error: %v", err)
+		//fmt.Fprintf(rw, "WARN: Unable to parse end year, defaulting to current year, error: %v", err)
 		yearTo = int(time.Now().Year())
 	}
 
@@ -103,8 +103,14 @@ func formHandler(rw http.ResponseWriter, r *http.Request) {
 		Experiences: Experiences,
 	}
 
+	cvObject := cvObject{
+		Profile:       profile,
+		ColorTemplate: r.FormValue("colorTemplate"),
+		PaperDimesion: r.FormValue("paperDimension"),
+	}
+
 	buf := &bytes.Buffer{}
-	err = tpl.Execute(buf, profile)
+	err = tpl.Execute(buf, cvObject)
 	if err != nil {
 		http.Error(rw, err.Error(), http.StatusInternalServerError)
 		return

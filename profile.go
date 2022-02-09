@@ -49,3 +49,9 @@ type Profile struct {
 	Hobbies         []Hobbies     `json:"hobbies"`
 	PublishedAt     time.Time     `json:"publishedAt"`
 }
+
+type cvObject struct {
+	Profile       Profile
+	ColorTemplate string `json:"colorTemplate"`
+	PaperDimesion string `json:"paperDimension"`
+}

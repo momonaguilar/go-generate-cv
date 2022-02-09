@@ -16,8 +16,8 @@
      <div class="resume_content">
        <div class="resume_item resume_info">
          <div class="title">
-           <p class="bold">{{.Name}}</p>
-           <p class="regular">{{.Position}}</p>
+           <p class="bold">{{.Profile.Name}}</p>
+           <p class="regular">{{.Profile.Position}}</p>
          </div>
          <ul>
            <li>
@@ -25,7 +25,7 @@
                <i class="fas fa-map-signs"></i>
              </div>
              <div class="data">
-               {{.Address}} <br/> USA
+               {{.Profile.Address}} <br/> USA
              </div>
            </li>
            <li>
@@ -33,7 +33,7 @@
                <i class="fas fa-mobile-alt"></i>
              </div>
              <div class="data">
-               {{.Phone}}
+               {{.Profile.Phone}}
              </div>
            </li>
            <li>
@@ -41,7 +41,7 @@
                <i class="fas fa-envelope"></i>
              </div>
              <div class="data">
-               {{.EmailAddress}}
+               {{.Profile.EmailAddress}}
              </div>
            </li>
            <li>
@@ -49,63 +49,11 @@
                <i class="fab fa-weebly"></i>
              </div>
              <div class="data">
-               {{.PersonalWebsite}}
+               {{.Profile.PersonalWebsite}}
              </div>
            </li>
          </ul>
        </div>
-       <!-- <div class="resume_item resume_skills">
-         <div class="title">
-           <p class="bold">Skill</p>
-         </div>
-         <ul>
-           <li>
-             <div class="skill_name">
-               {{.Skills.Skill}}
-             </div>
-             <div class="skill_progress">
-               <span style="width: 100%;"></span>
-             </div>
-             <div class="skill_per">{{.Skill}}%</div>
-           </li>
-           <li>
-             <div class="skill_name">
-               CSS
-             </div>
-             <div class="skill_progress">
-               <span style="width: 70%;"></span>
-             </div>
-             <div class="skill_per">70%</div>
-           </li>
-           <li>
-             <div class="skill_name">
-               SASS
-             </div>
-             <div class="skill_progress">
-               <span style="width: 90%;"></span>
-             </div>
-             <div class="skill_per">90%</div>
-           </li>
-           <li>
-             <div class="skill_name">
-               JS
-             </div>
-             <div class="skill_progress">
-               <span style="width: 60%;"></span>
-             </div>
-             <div class="skill_per">60%</div>
-           </li>
-           <li>
-             <div class="skill_name">
-               JQUERY
-             </div>
-             <div class="skill_progress">
-               <span style="width: 88%;"></span>
-             </div>
-             <div class="skill_per">88%</div>
-           </li>
-         </ul>
-       </div> -->
        <div class="resume_item resume_social">
          <div class="title">
            <p class="bold">Social</p>
